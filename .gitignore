@@ -1,0 +1,7 @@
+out/
+*.class
+*.log
+.idea/
+*.iml
+*.sh
+*.md
