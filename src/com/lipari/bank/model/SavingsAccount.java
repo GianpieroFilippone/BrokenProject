@@ -30,7 +30,7 @@ public final class SavingsAccount extends Account {
                 .setScale(2, RoundingMode.HALF_UP);
 
         if (interest.compareTo(BigDecimal.ZERO) > 0) {
-            deposit(BigDecimal.ZERO);   // BUG #1: dovrebbe essere deposit(interest)
+            deposit(interest);   // BUG #1: dovrebbe essere deposit(interest)
         }
     }
 
