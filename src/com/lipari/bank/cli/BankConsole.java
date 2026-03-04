@@ -200,20 +200,21 @@ public class BankConsole {
      * CheckingAccount non vengono mai eseguiti.
      */
     private String getAccountTypeInfo(Object accountObj) {
-        if (accountObj instanceof Account a) {
+        if (accountObj instanceof SavingsAccount sa) {
             // BUG #3: questo ramo cattura TUTTI gli Account, incluse le sottoclassi
-            return String.format("Tipo: [GENERICO]   IBAN: %s — saldo: %.2f€",
-                    a.getIban(), a.getBalance());
-
-        } else if (accountObj instanceof SavingsAccount sa) {
-            // Questo ramo non viene mai raggiunto!
-            return String.format("Tipo: [RISPARMIO]  IBAN: %s — tasso: %.2f%% — saldo: %.2f€",
+            return String.format("Tipo: [RISPARMIO]   IBAN: %s — saldo: %.2f€",
                     sa.getIban(), sa.getInterestRate(), sa.getBalance());
 
         } else if (accountObj instanceof CheckingAccount ca) {
             // Questo ramo non viene mai raggiunto!
-            return String.format("Tipo: [CORRENTE]   IBAN: %s — scoperto: %.2f€ — saldo: %.2f€",
+            return String.format("Tipo: [CORRENTE]  IBAN: %s — tasso: %.2f%% — saldo: %.2f€",
                     ca.getIban(), ca.getOverdraftLimit(), ca.getBalance());
+
+        } else if (accountObj instanceof Account a) {
+            // Questo ramo non viene mai raggiunto!
+            return String.format("Tipo: [GENERICO]   IBAN: %s — scoperto: %.2f€ — saldo: %.2f€",
+                    a.getIban(), a.getBalance()
+            );
         }
         return "Tipo: [SCONOSCIUTO]";
     }
