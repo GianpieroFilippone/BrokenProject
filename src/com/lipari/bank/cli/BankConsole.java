@@ -83,7 +83,7 @@ public class BankConsole {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("  ⚠ Input non valido! Inserisci un numero intero.");
-            // BUG #2: manca scanner.nextLine() per consumare il token non valido
+            scanner.nextLine(); // BUG #2: manca scanner.nextLine() per consumare il token non valido
             return -1;
         }
     }
